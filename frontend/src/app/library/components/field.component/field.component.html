@@ -1,0 +1,3 @@
+<div class="placeholder" *ngIf="!type || type === 'comment'">{{placeholder}}</div>
+<input type="text" *ngIf="!type" [(ngModel)]="value">
+<textarea *ngIf="type === 'comment'" [(ngModel)]="value"></textarea>

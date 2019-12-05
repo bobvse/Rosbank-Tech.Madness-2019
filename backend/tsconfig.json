@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "lib": ["es2018"],
+    "target": "es2018",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "./build",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "rootDirs": [
+      "./src",
+      "../common/src",
+      "../data_models/src",
+      "../services/src"
+    ],
+    "paths": {
+      "@common/*" : ["../common/*"],
+      "@models/*" : ["../models/*"],
+      "@services/*" : ["../services/*"]
+    }
+  }
+}

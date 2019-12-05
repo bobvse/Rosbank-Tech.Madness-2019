@@ -1,0 +1,25 @@
+:host {
+  position: relative;
+  display: block;
+}
+
+.placeholder {
+  line-height: 21px;
+  font-size: 18px;
+  color: #1B0852;
+  padding: 12px;
+}
+
+input, textarea {
+  padding: 12px;
+  background: #ffffff;
+  display: block;
+  width: 100%;
+  outline: none;
+  border: 1px solid #D5D5D5;
+}
+
+textarea {
+  height: 250px;
+  resize: none;
+}

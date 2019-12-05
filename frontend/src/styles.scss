@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+  font-family: Roboto, Arial, sans-serif;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.after-clear:after {
+  content: ' ';
+  display: block;
+  clear: both;
+}
