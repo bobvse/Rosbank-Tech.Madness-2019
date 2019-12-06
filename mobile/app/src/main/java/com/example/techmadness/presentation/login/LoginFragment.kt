@@ -6,7 +6,8 @@ import com.example.techmadness.R
 import com.example.techmadness.core.screen.BaseDIMoxyFragment
 import com.example.techmadness.presentation.login.di.LoginGraph
 
-class LoginFragment : BaseDIMoxyFragment<LoginGraph>(), LoginView{
+
+class LoginFragment : BaseDIMoxyFragment<LoginGraph>(), LoginView {
 
     companion object {
         fun newInstance(): LoginFragment {

@@ -8,11 +8,4 @@ object Screens {
     object LoginScreen : SupportAppScreen() {
         override fun getFragment() = LoginFragment.newInstance()
     }
-
-//
-//    data class FilterAirportsScreen(
-//        private val initParams: FilterAirportsInitParams
-//    ) : SupportAppScreen() {
-//        override fun getFragment() = FilterAirportsAirportFragment.newInstance(initParams)
-//    }
 }
