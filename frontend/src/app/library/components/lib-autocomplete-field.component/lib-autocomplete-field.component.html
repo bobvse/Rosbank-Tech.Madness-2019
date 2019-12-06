@@ -1,0 +1,27 @@
+<label class="label">
+    <input
+            type="text"
+            name="{{name}}"
+            [attr.id]="id"
+            [attr.data-hook-item]="name || dataHook"
+            [readonly]="readonly"
+            [(ngModel)]="inputValue"
+            (keydown)="keyDownListener($event)"
+            (focus)="focus($event)"
+            (blur)="blur($event)"
+            #input
+    >
+    <div class="autocomplete__collapse-icon"
+         *ngIf="!readonly"
+         [class.autocomplete__collapse-icon_focused]="focused"></div>
+    <div class="autocomplete__list"
+         #list
+         [class.autocomplete__list_turnOver]="turnOver"
+         *ngIf="focused && !readonly">
+        <div class="autocomplete__item"
+             [attr.data-hook-value]="item.text"
+             [class.checked]="value === item.value"
+             *ngFor="let item of filteredStack"
+             (mousedown)="checkItem(item)">{{item.text}}</div>
+    </div>
+</label>

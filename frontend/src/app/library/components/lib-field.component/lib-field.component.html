@@ -1,0 +1,173 @@
+<label *ngIf="type !== 'check' && type !== 'button'"
+       [attr.for]="id"
+       class="placeholder{{leftPaddingNone && ' left-padding-none' || ''}}"
+>{{label}}</label>
+<div class="controls after-clear{{(readonly || !actionAccess) && ' readonly' || ''}}">
+    <div class="control fa fa-{{control.icon}}"
+         (click)="control.click && control.click()"
+         *ngFor="let control of controls"
+    ></div>
+</div>
+
+<input *ngIf="type === 'text'"
+       [attr.data-hook-item]="label || hook"
+       [attr.id]="id"
+       [placeholder]="placeholder"
+       [(ngModel)]="value"
+       [maxlength]="max"
+       [readOnly]="readonly || !actionAccess"
+       [hidden]="hidden"
+       (keyup)="onKeyUp.emit($event)"
+       (focus)="focus($event)"
+       (blur)="blur($event)">
+
+<input *ngIf="type === 'zip'"
+       [attr.data-hook-item]="label || hook"
+       [attr.id]="id"
+       [placeholder]="placeholder"
+       [(ngModel)]="value"
+       [maxlength]="max"
+       (change)="setNumberValue($event)"
+       (keyup)="setNumberValue($event)"
+       [readOnly]="readonly || !actionAccess"
+       [hidden]="hidden"
+       (focus)="focus($event)"
+       (blur)="blur($event)">
+
+<input *ngIf="type === 'year'"
+       [attr.data-hook-item]="label || hook"
+       [attr.id]="id"
+       [placeholder]="placeholder"
+       [(ngModel)]="value"
+       [maxlength]="max"
+       (change)="setNumberValue($event)"
+       (keyup)="setNumberValue($event)"
+       [readOnly]="readonly || !actionAccess"
+       [hidden]="hidden"
+       (focus)="focus($event)"
+       (blur)="blur($event)">
+
+<input *ngIf="type === 'number'"
+       [attr.data-hook-item]="label || hook"
+       [attr.id]="id"
+       [ngClass]="{'align-right': align === 'right'}"
+       [placeholder]="placeholder"
+       [(ngModel)]="value"
+       [readOnly]="readonly || !actionAccess"
+       [hidden]="hidden"
+       (change)="setNumberValue($event)"
+       (keyup)="setNumberValue($event)"
+       (focus)="focus($event)"
+       (blur)="blur($event)">
+
+<input *ngIf="type === 'phone' || type === 'fax'"
+       [attr.data-hook-item]="label || hook"
+       [attr.id]="id"
+       [placeholder]="placeholder"
+       [(ngModel)]="value"
+       [readOnly]="readonly || !actionAccess"
+       [hidden]="hidden"
+       [maxlength]="14"
+       (change)="setNumberValue($event)"
+       (keyup)="setNumberValue($event)"
+       (focus)="focus($event)"
+       (blur)="blur($event)">
+
+<input *ngIf="type === 'password'"
+       type="password"
+       autocomplete="off"
+       [attr.data-hook-item]="label || hook"
+       [attr.id]="id"
+       [placeholder]="placeholder"
+       [(ngModel)]="value"
+       [readonly]="readonly || !actionAccess"
+       [hidden]="hidden"
+       (keyup)="onKeyUp.emit($event)"
+       (focus)="focus($event)"
+       (blur)="blur($event)">
+
+<textarea *ngIf="type === 'comment'"
+          [attr.data-hook-item]="label || hook"
+          [attr.id]="id"
+          [placeholder]="placeholder"
+          [readonly]="readonly || !actionAccess"
+          [(ngModel)]="value"
+          (keyup)="onKeyUp.emit($event)"
+          (focus)="focus($event)"
+          (blur)="blur($event)"
+          [hidden]="hidden"
+          [spellcheck]="type === 'comment'"></textarea>
+
+<lib-autocomplete-field
+        *ngIf="type === 'autocomplete'"
+        [sortDirection]="sortDirection"
+        [(value)]="value"
+        [dataHook]="label || hook"
+        [name]="label"
+        [stack]="stack"
+        [id]="id"
+        [readonly]="readonly || !actionAccess"
+        (onFocus)="focus($event)"
+        (onBlur)="blur($event)"
+></lib-autocomplete-field>
+
+<lib-dropdown-field
+        *ngIf="type === 'dropdown'"
+        [dataHook]="label || hook"
+        [(value)]="value"
+        [name]="label"
+        [formName]="formName"
+        [stack]="stack"
+        [id]="id"
+        [readonly]="readonly || !actionAccess"
+        [sortDirection]="sortDirection"
+        [createEnable]="createEnable"
+        (onCreate)="onCreate.emit($event)"
+        (onFocus)="focus($event)"
+        (onBlur)="blur($event)"
+></lib-dropdown-field>
+
+<label *ngIf="type === 'check'"
+       class="checkbox-holder">
+    <input type="checkbox"
+           [attr.data-hook-checkbox]="label || hook"
+           [checked]="value"
+           (change)="toggleCheckbox()"
+           [disabled]="readonly || !actionAccess"
+           (focus)="focus($event)"
+           (blur)="blur($event)"> {{label}}
+</label>
+
+<button [attr.data-hook-button]="label || hook"
+        [class.readonly]="readonly || !actionAccess"
+        [disabled]="readonly || !actionAccess"
+        *ngIf="type === 'button'"
+        (click)="!readonly && actionAccess && exec.emit($event)">{{label}}
+</button>
+
+<div class="file-input" *ngIf="type === 'file'">
+    <input [attr.data-hook-item]="label || hook"
+           type="text"
+           [ngModel]="fileName"
+           [attr.id]="id"
+           [readonly]="true"
+           (focus)="focus($event)"
+           (blur)="blur($event)">
+    <button class="btn btn-secondary"
+            [disabled]="true"
+            [hidden]="downloadFileDisabled"
+            (click)="downloadFile()">
+        <i class="fa fa-download"></i>
+    </button>
+    <label class="btn btn-primary"
+           *ngIf="!readonly && actionAccess">
+        <input type="file"
+               #uploadFileInput
+               [attr.data-hook-file-item]="label || hook"
+               [attr.id]="id"
+               hidden
+               (change)="uploadFile($event, urlUpload)"
+               [accept]="fileTypes">
+        <i class="fa fa-upload"></i>
+    </label>
+</div>

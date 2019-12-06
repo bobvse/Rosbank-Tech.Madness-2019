@@ -1,0 +1,51 @@
+<input
+        type="text"
+        class="input"
+        [attr.id]="id"
+        [attr.name]="formName"
+        [attr.data-hook-item]="name"
+        [readonly]="true"
+        [(ngModel)]="inputValue"
+        (keydown)="keyDownListener($event)"
+        [ngClass]="{readonly: readonly}"
+        (focus)="focus($event)"
+        #input
+>
+<div class="autocomplete__collapse-icon"
+     *ngIf="!readonly"
+     [class.autocomplete__collapse-icon_focused]="focused"></div>
+<div class="autocomplete__hint" *ngIf="focused && !readonly"
+     [class.autocomplete__hint_turnOver]="turnOver">
+    <div class="autocomplete__list"
+         [attr.data-hook-autocomplete]="name"
+         #list>
+        <div class="autocomplete__empty-text" *ngIf="!stack.length">{{emptyMessage}}</div>
+        <div class="autocomplete__item"
+             *ngFor="let item of stack"
+             [ngClass]="{checked: item.value === value}"
+             (mousedown)="itemClick(item, $event)">
+            <div class="autocomplete__item-text"
+                 [attr.data-hook-value]="item.text"
+                 *ngIf="!item.onEdit || editingItem !== item">{{item.text}}</div>
+            <input [(ngModel)]="item.text"
+                   type="text"
+                   class="autocomplete__item-text"
+                   *ngIf="item.onEdit && editingItem === item">
+            <div class="autocomplete__item-controls after-clear">
+                <i class="fa fa-edit" *ngIf="item.onEdit && !editingItem" (click)="editingItem = item"></i>
+                <i class="fa fa-check" *ngIf="item.onEdit && editingItem === item" (click)="confirmEdit(item)"></i>
+                <i class="fa fa-close" *ngIf="item.onDelete && editingItem !== item"
+                   (click)="deleteItem(item)"></i>
+            </div>
+        </div>
+    </div>
+    <div class="autocomplete__create-wrap" *ngIf="createEnable">
+        <input type="text"
+               [placeholder]="createDefaultText"
+               class="autocomplete__create-input"
+               (keypress)="createInputKeyListener($event)"
+               (focus)="createValue = ''"
+               (blur)="createValue = createDefaultText"
+               [(ngModel)]="createValue">
+    </div>
+</div>

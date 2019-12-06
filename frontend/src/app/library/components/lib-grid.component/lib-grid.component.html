@@ -1,0 +1,76 @@
+<div class="table">
+    <div class="table__head after-clear"
+         (mousemove)="headMouseMoveListener($event)"
+    >
+        <div class="table__head-cell"
+             [ngStyle]="{width: (column.width | libGridCellWidth:column.resizeCorrelation:definitions.length)}"
+             *ngFor="let column of definitions"
+        >
+            <div class="table__head-cell-text"
+                 (click)="headCellClickListener(column)"
+            >{{column.title}}</div>
+            <div class="table__head-cell-order{{selectedOrderDirection === 'asc' &&' table__head-cell-order_reverse' || ''}}"
+                 *ngIf="selectedOrderColumn === column && selectedOrderDirection"
+            ></div>
+            <div class="table__head-cell-resize"
+                 (mousedown)="headCellResizeDownListener(column)"
+                 (mouseleave)="selectedResizeColumn = null"
+                 (dblclick)="column.resizeCorrelation = 0"
+            ></div>
+        </div>
+    </div>
+    <div class="table__body"
+         (resize)="tableResizeListener($event)"
+         #tbody
+    >
+        <div class="table__column"
+             *ngFor="let column of definitions"
+             [ngStyle]="{width: (column.width | libGridCellWidth:column.resizeCorrelation:definitions.length)}"
+        >
+            <div class="table__cell{{selectedRowIndex === index && ' table__cell_focused' || ''}}{{column.cellClass | libGridCellClass}}"
+                 (click)="cellClickListener(item, column, index)"
+                 (dblclick)="cellDoubleClickListener(item, column, index)"
+                 *ngFor="let item of pageList; index as index"
+            >
+                <ng-container libGridCellAnchor #cellContainer>
+                    {{item | libGridCellValueView:column:cellContainer}}
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="table__preloader{{loading && ' show' || ''}}"></div>
+</div>
+<div class="pagination after-clear">
+    <div class="pagination__nav">
+        <div class="pagination__nav-button pagination__nav-button_first"
+             (click)="openPage(0)"
+        >
+            <div class="icon fa fa-angle-double-left"></div>
+        </div>
+        <div class="pagination__nav-button pagination__nav-button_previous"
+             (click)="openPage(currentPage - 1)"
+        >
+            <div class="icon fa fa-angle-left"></div>
+        </div>
+        <div class="pagination__nav-button pagination__nav-button_page">
+            {{currentPage + 1}} / {{getPagesLength()}}
+        </div>
+        <div class="pagination__nav-button pagination__nav-button_next"
+             (click)="openPage(currentPage + 1)"
+        >
+            <div class="icon fa fa-angle-right"></div>
+        </div>
+        <div class="pagination__nav-button pagination__nav-button_last"
+             (click)="openPage(list.length / pageSize)"
+        >
+            <div class="icon fa fa-angle-double-right"></div>
+        </div>
+    </div>
+    <div class="pagination__quantity">
+        {{
+            currentPage * pageSize + 1 | number:'0.0-0'
+        }} to {{
+        (currentPage * pageSize + pageSize < list.length && currentPage * pageSize + pageSize || list.length) | number:'0.0-0'
+        }} of {{list.length}}
+    </div>
+</div>
