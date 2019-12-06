@@ -7,6 +7,7 @@
         android:id="@+id/etLogin"
         android:layout_margin="8dp"
         android:layout_width="match_parent"
+        android:maxLines="1"
         android:layout_height="wrap_content"
         android:hint="@string/hint_login"/>
 
@@ -14,6 +15,7 @@
         android:id="@+id/etPassword"
         android:layout_margin="8dp"
         android:layout_width="match_parent"
+        android:maxLines="1"
         android:layout_height="wrap_content"
         android:hint="@string/hint_password"
         android:inputType="textPassword"/>

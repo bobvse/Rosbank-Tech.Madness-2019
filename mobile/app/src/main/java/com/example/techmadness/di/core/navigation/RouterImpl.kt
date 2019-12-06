@@ -8,5 +8,9 @@ class RouterImpl : Router(), MainRouter {
         newRootScreen(Screens.LoginScreen)
     }
 
+    override fun openDocumentsScreen() {
+        navigateTo(Screens.DocumentsScreen)
+    }
+
     override fun goBack() = exit()
 }
