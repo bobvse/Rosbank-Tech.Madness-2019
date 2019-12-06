@@ -2,6 +2,7 @@ package com.example.techmadness.presentation.login
 
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.example.techmadness.R
 import com.example.techmadness.core.screen.BaseDIMoxyFragment
 import com.example.techmadness.presentation.login.di.LoginGraph
 
@@ -21,8 +22,6 @@ class LoginFragment : BaseDIMoxyFragment<LoginGraph>(), LoginView{
 
     override fun createGraph(): LoginGraph = LoginGraph()
 
-    override fun getLayoutRes(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getLayoutRes(): Int = R.layout.login_fragment
 
 }
