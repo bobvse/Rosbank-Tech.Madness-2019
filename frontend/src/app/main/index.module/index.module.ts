@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {IndexScreenComponent} from './map.screen.component/index.screen.component';
+import {IndexScreenComponent} from './index.screen.component/index.screen.component';
 import {IndexRoutingModule} from './index-routing.module';
 import {LibraryModule} from '../../library/library.module';
 import {HttpClientModule} from '@angular/common/http';
