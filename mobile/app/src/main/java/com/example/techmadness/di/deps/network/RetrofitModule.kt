@@ -1,7 +1,6 @@
 package com.example.techmadness.di.deps.network
 
-import android.annotation.SuppressLint
-import com.example.techmadness.core.networking.DocumentsApiService
+import com.example.techmadness.core.networking.TechMadnessApiService
 import com.example.techmadness.core.networking.JsonAndXmlConverters
 import com.example.techmadness.di.scope.ApplicationScope
 import com.google.gson.FieldNamingPolicy
@@ -16,11 +15,6 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import java.lang.reflect.Modifier
-import java.security.cert.X509Certificate
-import javax.net.ssl.SSLContext
-import javax.net.ssl.SSLSocketFactory
-import javax.net.ssl.TrustManager
-import javax.net.ssl.X509TrustManager
 
 @Module
 class RetrofitModule {
@@ -32,8 +26,8 @@ class RetrofitModule {
 
     @Provides
     @ApplicationScope
-    fun provideAviaApi(retrofit: Retrofit): DocumentsApiService {
-        return retrofit.create(DocumentsApiService::class.java)
+    fun provideAviaApi(retrofit: Retrofit): TechMadnessApiService {
+        return retrofit.create(TechMadnessApiService::class.java)
     }
 
     @Provides
