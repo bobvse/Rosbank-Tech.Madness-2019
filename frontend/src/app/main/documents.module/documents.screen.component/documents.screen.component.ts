@@ -28,7 +28,7 @@ export class DocumentsScreenComponent {
     @ViewChild('uploadPopup') public uploadPopup: LibPopupComponent;
     @ViewChild('priorityPopup') public priorityPopup: LibPopupComponent;
     @ViewChild('filterPopup') public filterPopup: LibPopupComponent;
-    private pullingTimeout = 2000;
+    private pullingTimeout = 5000;
     private pullingTimeoutId: any = null;
     public company: ICompanyModel = new Company("My company", 1200000);
     public user: IUserModel = new User("login", this.company.id);
@@ -78,17 +78,24 @@ export class DocumentsScreenComponent {
         });
     }
 
+    public ngOnDestroy() {
+        if (this.pullingTimeoutId) {
+            clearTimeout(this.pullingTimeoutId);
+            this.pullingTimeoutId = null;
+        }
+    }
+
     public startPulling() {
         const promise = this.updateData();
         if (!promise) {
             return;
         }
         if (this.pullingTimeoutId) {
-            clearTimeout(this.pullingTimeout);
-            this.pullingTimeout = null;
+            clearTimeout(this.pullingTimeoutId);
+            this.pullingTimeoutId = null;
         }
         promise.then(() => {
-            this.pullingTimeout = setTimeout(() => this.startPulling(), this.pullingTimeout);
+            this.pullingTimeoutId = setTimeout(() => this.startPulling(), this.pullingTimeout);
         });
     }
 
@@ -207,7 +214,7 @@ export class DocumentsScreenComponent {
         }
         this.notify.show("В процессе...");
         this.backendService.post(`Sign/${login}`, {
-            DocumentsIds: this.filteredDocuments.filter(item => (<Document>item).selected),
+            DocumentIds: this.filteredDocuments.filter(item => (<Document>item).selected).map(item => item.id),
         })
             .then(() => {
                 this.notify.show("Готово");
