@@ -32,8 +32,8 @@
                  (dblclick)="cellDoubleClickListener(item, column, index)"
                  *ngFor="let item of pageList; index as index"
             >
-                <ng-container libGridCellAnchor #cellContainer>
-                    {{item | libGridCellValueView:column:cellContainer}}
+                <ng-container [libGridCellAnchor]="column" [libGridCellAnchorInstance]="item">
+                    {{item | libGridCellValueView:column}}
                 </ng-container>
             </div>
         </div>

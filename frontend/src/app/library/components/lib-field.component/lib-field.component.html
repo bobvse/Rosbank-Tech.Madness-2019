@@ -2,7 +2,7 @@
        [attr.for]="id"
        class="placeholder{{leftPaddingNone && ' left-padding-none' || ''}}"
 >{{label}}</label>
-<div class="controls after-clear{{(readonly || !actionAccess) && ' readonly' || ''}}">
+<div class="controls after-clear{{readonly && ' readonly' || ''}}">
     <div class="control fa fa-{{control.icon}}"
          (click)="control.click && control.click()"
          *ngFor="let control of controls"
@@ -15,7 +15,7 @@
        [placeholder]="placeholder"
        [(ngModel)]="value"
        [maxlength]="max"
-       [readOnly]="readonly || !actionAccess"
+       [readOnly]="readonly"
        [hidden]="hidden"
        (keyup)="onKeyUp.emit($event)"
        (focus)="focus($event)"
@@ -29,7 +29,7 @@
        [maxlength]="max"
        (change)="setNumberValue($event)"
        (keyup)="setNumberValue($event)"
-       [readOnly]="readonly || !actionAccess"
+       [readOnly]="readonly"
        [hidden]="hidden"
        (focus)="focus($event)"
        (blur)="blur($event)">
@@ -42,7 +42,7 @@
        [maxlength]="max"
        (change)="setNumberValue($event)"
        (keyup)="setNumberValue($event)"
-       [readOnly]="readonly || !actionAccess"
+       [readOnly]="readonly"
        [hidden]="hidden"
        (focus)="focus($event)"
        (blur)="blur($event)">
@@ -53,7 +53,7 @@
        [ngClass]="{'align-right': align === 'right'}"
        [placeholder]="placeholder"
        [(ngModel)]="value"
-       [readOnly]="readonly || !actionAccess"
+       [readOnly]="readonly"
        [hidden]="hidden"
        (change)="setNumberValue($event)"
        (keyup)="setNumberValue($event)"
@@ -65,7 +65,7 @@
        [attr.id]="id"
        [placeholder]="placeholder"
        [(ngModel)]="value"
-       [readOnly]="readonly || !actionAccess"
+       [readOnly]="readonly"
        [hidden]="hidden"
        [maxlength]="14"
        (change)="setNumberValue($event)"
@@ -80,7 +80,7 @@
        [attr.id]="id"
        [placeholder]="placeholder"
        [(ngModel)]="value"
-       [readonly]="readonly || !actionAccess"
+       [readonly]="readonly"
        [hidden]="hidden"
        (keyup)="onKeyUp.emit($event)"
        (focus)="focus($event)"
@@ -90,7 +90,7 @@
           [attr.data-hook-item]="label || hook"
           [attr.id]="id"
           [placeholder]="placeholder"
-          [readonly]="readonly || !actionAccess"
+          [readonly]="readonly"
           [(ngModel)]="value"
           (keyup)="onKeyUp.emit($event)"
           (focus)="focus($event)"
@@ -106,7 +106,7 @@
         [name]="label"
         [stack]="stack"
         [id]="id"
-        [readonly]="readonly || !actionAccess"
+        [readonly]="readonly"
         (onFocus)="focus($event)"
         (onBlur)="blur($event)"
 ></lib-autocomplete-field>
@@ -119,7 +119,7 @@
         [formName]="formName"
         [stack]="stack"
         [id]="id"
-        [readonly]="readonly || !actionAccess"
+        [readonly]="readonly"
         [sortDirection]="sortDirection"
         [createEnable]="createEnable"
         (onCreate)="onCreate.emit($event)"
@@ -133,41 +133,14 @@
            [attr.data-hook-checkbox]="label || hook"
            [checked]="value"
            (change)="toggleCheckbox()"
-           [disabled]="readonly || !actionAccess"
+           [disabled]="readonly"
            (focus)="focus($event)"
            (blur)="blur($event)"> {{label}}
 </label>
 
 <button [attr.data-hook-button]="label || hook"
-        [class.readonly]="readonly || !actionAccess"
-        [disabled]="readonly || !actionAccess"
+        [class.readonly]="readonly"
+        [disabled]="readonly"
         *ngIf="type === 'button'"
-        (click)="!readonly && actionAccess && exec.emit($event)">{{label}}
+        (click)="!readonly && exec.emit($event)">{{label}}
 </button>
-
-<div class="file-input" *ngIf="type === 'file'">
-    <input [attr.data-hook-item]="label || hook"
-           type="text"
-           [ngModel]="fileName"
-           [attr.id]="id"
-           [readonly]="true"
-           (focus)="focus($event)"
-           (blur)="blur($event)">
-    <button class="btn btn-secondary"
-            [disabled]="true"
-            [hidden]="downloadFileDisabled"
-            (click)="downloadFile()">
-        <i class="fa fa-download"></i>
-    </button>
-    <label class="btn btn-primary"
-           *ngIf="!readonly && actionAccess">
-        <input type="file"
-               #uploadFileInput
-               [attr.data-hook-file-item]="label || hook"
-               [attr.id]="id"
-               hidden
-               (change)="uploadFile($event, urlUpload)"
-               [accept]="fileTypes">
-        <i class="fa fa-upload"></i>
-    </label>
-</div>

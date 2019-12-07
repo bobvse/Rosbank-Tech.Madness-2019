@@ -14,8 +14,7 @@
 <div class="autocomplete__collapse-icon"
      *ngIf="!readonly"
      [class.autocomplete__collapse-icon_focused]="focused"></div>
-<div class="autocomplete__hint" *ngIf="focused && !readonly"
-     [class.autocomplete__hint_turnOver]="turnOver">
+<div class="autocomplete__hint" *ngIf="focused && !readonly">
     <div class="autocomplete__list"
          [attr.data-hook-autocomplete]="name"
          #list>

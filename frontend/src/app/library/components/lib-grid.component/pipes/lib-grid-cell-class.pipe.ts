@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({name: 'libGridCellClass'})
 export class LibGridCellClassPipe implements PipeTransform {
-    public transform(value: () => string | string) {
+    public transform(value: (() => string) | string) {
         switch (typeof value) {
             case 'function': {
                 const result = value();

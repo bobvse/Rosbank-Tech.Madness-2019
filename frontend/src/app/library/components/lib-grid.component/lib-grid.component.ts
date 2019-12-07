@@ -1,12 +1,13 @@
 import {
     ChangeDetectorRef,
-    Component,
+    Component, ComponentFactoryResolver,
     ComponentRef, ElementRef, EventEmitter,
     HostBinding,
-    Input, Output, ViewChild,
+    Input, Output, QueryList, ViewChild, ViewChildren,
 } from '@angular/core';
 import { LayoutService } from 'app/services/layout.service';
 import { Subscription } from 'rxjs';
+import {LibGridCellAnchorDirective} from 'app/library/components/lib-grid.component/directives/lib-grid-cell-anchor.directive';
 
 export enum LibGridCellTypes {
     String = 'string',
@@ -20,7 +21,7 @@ export interface ILibGridDefinition<InstanceType> {
     valueGetter?: (instance: InstanceType) => string;
     type?: LibGridCellTypes;
     renderComponent?: (instance: InstanceType, component: ComponentRef<any>) => void;
-    component?: Component;
+    component?: any;
     width?: string;
     resizeCorrelation?: number;
     calculatedWidth?: string;
@@ -35,6 +36,18 @@ export interface ILibGridDefinition<InstanceType> {
 })
 export class LibGridComponent {
     @ViewChild('tbody') private _tbody: ElementRef;
+    private _anchors: QueryList<LibGridCellAnchorDirective>;
+    public structureIsDirty: boolean;
+    @ViewChildren(LibGridCellAnchorDirective)
+    private get anchors() {
+        return this._anchors;
+    }
+    private set anchors(value: QueryList<LibGridCellAnchorDirective>) {
+        this._anchors = value;
+        this.structureIsDirty = true;
+        setTimeout(() => this.renderComponents(), 0);
+        this.structureIsDirty = false;
+    }
     @Output() public rowClick: EventEmitter<any> = new EventEmitter<any>();
     @Output() public rowDoubleClick: EventEmitter<any> = new EventEmitter<any>();
     @Output() public sortChange: EventEmitter<any> = new EventEmitter<any>();
@@ -63,6 +76,7 @@ export class LibGridComponent {
         if (this.autoPageSize) {
             this.pageSize = Math.round((this._tbody.nativeElement.offsetHeight - 25) / 25);
         }
+        this.filterListForPage();
     }
     public _pageSize: number;
     @Input() public get pageSize(): number {
@@ -80,7 +94,12 @@ export class LibGridComponent {
         return (typeof this.height === 'number' || /^\d+(\.\d+)?$/.test(this.height as string)) && this.height + '%' ||
             typeof this.height === 'string' && this.height || 'auto';
     }
-    constructor(private layoutService: LayoutService) {}
+
+    constructor(
+        private layoutService: LayoutService,
+        private componentFactoryResolver: ComponentFactoryResolver,
+    ) {}
+
     public ngOnInit() {
         if (this.autoPageSize) {
             this.pageSize = this._tbody.nativeElement.offsetHeight / 25;
@@ -89,11 +108,13 @@ export class LibGridComponent {
             this.selectedResizeColumn = null;
         });
     }
+
     public ngOnDestroy() {
         if (this.pageMouseUpSubscription) {
             this.pageMouseUpSubscription.unsubscribe();
         }
     }
+
     private filterListForPage() {
         this.selectedRowIndex = null;
         this.sortedList = this.sort(this.selectedOrderDirection, this.selectedOrderColumn, this.list);
@@ -106,11 +127,13 @@ export class LibGridComponent {
             );
         }
     }
+
     public tableResizeListener(event: Event) {
         if (this.autoPageSize) {
             this.pageSize = Math.round(((event.target as HTMLElement).offsetHeight - 25) / 25);
         }
     }
+
     public openPage(number: number) {
         if (number < 0) {
             number = 0;
@@ -124,10 +147,12 @@ export class LibGridComponent {
     public getPagesLength() {
         return Math.ceil(this.list.length / this.pageSize) || 0;
     }
+
     public rowClickListener(item, index) {
         this.selectedRowIndex = index;
         this.rowClick.emit(item);
     }
+
     public headCellClickListener(columnDefinition: ILibGridDefinition<any>) {
         let orderDirection: 'asc' | 'desc';
         if (columnDefinition === this.selectedOrderColumn) {
@@ -147,6 +172,7 @@ export class LibGridComponent {
             this.filterListForPage();
         }
     }
+
     private getValueByPath(value: object, path: string = ''): string {
         const parsedPath = path.match(/[^\.]+/g);
         if (typeof value !== 'object' || !value || !parsedPath) {
@@ -161,6 +187,7 @@ export class LibGridComponent {
         }
         return cachedObject.toString();
     }
+
     public sort(
         orderDirection: 'asc' | 'desc',
         columnDefinition: ILibGridDefinition<any>,
@@ -190,26 +217,42 @@ export class LibGridComponent {
         });
         return result || [];
     }
+
     public headMouseMoveListener(event: MouseEvent) {
         if (!this.selectedResizeColumn) {
             return;
         }
         this.selectedResizeColumn.resizeCorrelation += event.layerX;
     }
+
     public headCellResizeDownListener(column: ILibGridDefinition<any>) {
         column.resizeCorrelation = column.resizeCorrelation || 0;
         this.selectedResizeColumn = column;
     }
+
     public cellClickListener(item: any, definition: ILibGridDefinition<any>, rowIndex: number) {
         if (definition.cellClick) {
             definition.cellClick(item);
         }
         this.rowClickListener(item, rowIndex)
     }
+
     public cellDoubleClickListener(item: any, definition: ILibGridDefinition<any>, rowIndex: number) {
         if (definition.cellDoubleClick) {
             definition.cellDoubleClick(item);
         }
         this.rowDoubleClick.emit(item);
+    }
+
+    public renderComponents() {
+        (this.anchors || []).forEach(item => {
+            if (!item.libGridCellAnchor.component) {
+                return;
+            }
+            const componentFactory = this.componentFactoryResolver.resolveComponentFactory(item.libGridCellAnchor.component);
+            const viewContainerRef = item.viewContainerRef;
+            viewContainerRef.clear();
+            item.libGridCellAnchor.renderComponent(item.libGridCellAnchorInstance, viewContainerRef.createComponent(componentFactory));
+        });
     }
 }

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "",
+  apiUrl: "http://hakaton-nirvana.eastus.cloudapp.azure.com",
 };
 
 /*

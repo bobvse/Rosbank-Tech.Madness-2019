@@ -6,7 +6,7 @@
         <div class="lib-popup__header after-clear" *ngIf="!hideHeader">
             <div class="lib-popup__header-text" [attr.data-hook-title]="header" [hidden]="!header">{{header}}</div>
             <div class="lib-popup__button" [attr.data-hook-button]="header" (click)="opened = false" *ngIf="showCloseButton">
-                <svg height="16" width="16"><use xlink:href="#cross"></use></svg>
+                <i class="fa fa-close"></i>
             </div>
             <div *ngFor="let button of buttons"
                  class="lib-popup__button"

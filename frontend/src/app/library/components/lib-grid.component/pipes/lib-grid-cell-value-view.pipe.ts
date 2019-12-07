@@ -7,11 +7,10 @@ export class LibGridCellValueViewPipe implements PipeTransform {
     constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
     public transform(
         value: object,
-        definition: ILibGridDefinition<any>,
-        viewAnchor: LibGridCellAnchorDirective
+        definition: ILibGridDefinition<any>
     ) {
         switch (definition.type) {
-            case LibGridCellTypes.Component: this.initComponent(value, definition, viewAnchor); break;
+            // case LibGridCellTypes.Component: this.initComponent(value, definition, viewAnchor); break;
             case LibGridCellTypes.String:
             default: return definition.valueGetter &&
                 definition.valueGetter(value) ||
@@ -40,7 +39,7 @@ export class LibGridCellValueViewPipe implements PipeTransform {
         definition: ILibGridDefinition<any>,
         viewAnchor: LibGridCellAnchorDirective
     ) {
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(<any>definition.component);
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(definition.component);
         const viewContainerRef = viewAnchor.viewContainerRef;
         viewContainerRef.clear();
         definition.renderComponent(value, viewContainerRef.createComponent(componentFactory));

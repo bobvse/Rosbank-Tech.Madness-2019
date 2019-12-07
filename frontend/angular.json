@@ -27,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+                "src/assets/css/font-awesome.css",
               "src/styles.scss"
             ],
             "scripts": [],

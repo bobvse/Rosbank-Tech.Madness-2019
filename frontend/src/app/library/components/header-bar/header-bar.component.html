@@ -1,0 +1,10 @@
+<div class="title" *ngIf="title" [attr.data-hook-title]="title" [class.goBackIsHide]="!goBackIsVisible">{{ title }}</div>
+<div class="menu after-clear">
+    <ng-content></ng-content>
+</div>
+<div *ngIf="status"
+     [ngClass]="{ 'has-extra': statusSubscribe }"
+     class="badge badge-status"
+><div [attr.data-hook-status]="status">{{status}}</div>
+    <span *ngIf="statusSubscribe" class="small">{{statusSubscribe}}</span>
+</div>

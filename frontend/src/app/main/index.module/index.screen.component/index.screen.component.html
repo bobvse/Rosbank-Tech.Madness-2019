@@ -1,4 +1,70 @@
+<app-header-bar title="My impossible app" status="Баланс: 1.2млн">
+    <app-action
+        faIcon="fa-upload"
+        title="Загрузить"
+        (execute)="uploadPopup.show()"
+    ></app-action>
+    <app-action
+        faIcon="fa-sort"
+        title="Приоритет"
+        (execute)="priorityPopup.show()"
+    ></app-action>
+    <app-action
+        faIcon="fa-edit"
+        title="Подписать"
+    ></app-action>
+    <app-action
+        faIcon="fa-filter"
+        title="Фильтр"
+    ></app-action>
+</app-header-bar>
+
 <app-admin-menu></app-admin-menu>
+
 <app-admin-page-container>
-  <lib-grid [definitions]="gridDefinition"></lib-grid>
+  <lib-grid
+      [definitions]="gridDefinition"
+      [list]="documents"
+      [pageSize]="30"
+  ></lib-grid>
 </app-admin-page-container>
+
+<lib-popup
+    height="320px"
+    size="450px"
+    [padding]="0"
+    header="Загрузить"
+    #uploadPopup
+>
+    <label class="upload-popup"
+           (dragenter)="preventDefaults($event)"
+           (dragover)="preventDefaults($event)"
+           (dragleave)="preventDefaults($event)"
+           (drop)="fileDropListener($event)">
+        <span class="upload-popup__icon fa fa-upload"></span>
+        <span class="upload-popup__description">Выберите файлы</span>
+        <span class="upload-popup__subscription">Только XML формат</span>
+        <input type="file" multiple hidden (change)="fileInputListener($event)">
+    </label>
+</lib-popup>
+
+<lib-popup
+    size="260px"
+    header="Приоритет"
+    overflow="visible"
+    #priorityPopup
+>
+    <lib-field
+        type="dropdown"
+        label="Выберите вариант"
+        size="100"
+        [stack]="priorityVariantsStack"
+        #priorityField
+    ></lib-field>
+    <lib-field
+        type="button"
+        label="Подтвердить"
+        size="100"
+        (exec)="setPriority(priorityField.value)"
+    ></lib-field>
+</lib-popup>

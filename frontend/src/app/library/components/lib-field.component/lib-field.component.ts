@@ -103,29 +103,18 @@ export class LibFieldComponent {
     @Input() public urlUpload: string;
     @Input() public downloadFileDisabled = false;
     @Input() public controls: LibFieldControl[] = [];
-    public actionAccess: boolean;
-    public viewAccess: boolean;
     public isInvalid = false;
     public touched: boolean;
     public focused: boolean;
-    private layoutFieldsSubscribe: any;
     private _value: any;
     private _label = '';
-    private _date_value: any;
     public leftPaddingNone = false;
     public fileName: string;
 
-    constructor(
-        private layoutService: LayoutService,
-        private notify: NotifyService,
-        private backendService: BackendService,
-    ) {
+    constructor() {
         this.id = '' + Math.random();
     }
 
-    @HostBinding('style.display') public get displayStyle() {
-        return this.viewAccess && 'block' || 'none';
-    };
     @HostBinding('style.width') get getWidth() {
         return (typeof this.size === 'number' || /^\d+(\.\d+)?$/.test(this.size as string)) && this.size + '%' ||
             typeof this.size === 'string' && this.size || 'auto';
@@ -278,27 +267,5 @@ export class LibFieldComponent {
         this.value = $event.target.value.replace(/,+/gi, '.').replace(/\.(.*\.)/gi, '$1').replace(/([^\-\d.])*/gi, '');
         $event.target.value = this.value;
         this.onKeyUp.emit($event);
-    }
-
-    public async uploadFile(event, urlUpload = 'documents') {
-        if (this.uploadInterceptor && await this.uploadInterceptor(event) === false) {
-            if (this.interceptorError) {
-                this.interceptorError(event, this);
-            }
-            return;
-        }
-        const fileBrowser = event.target;
-        if (fileBrowser.files && fileBrowser.files[0]) {
-            try {
-                const formData = new FormData();
-                formData.append('files', fileBrowser.files[0]);
-                this.backendService.post<any[]>(urlUpload, formData).then(files => {
-                    this.value = files[0];
-                });
-                this.uploadFileInput.nativeElement.value = '';
-            } catch (e) {
-                console.error(`Upload file error. ${e}`);
-            }
-        }
     }
 }

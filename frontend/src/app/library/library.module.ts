@@ -17,6 +17,8 @@ import {LibGridCellWidthPipe} from 'app/library/components/lib-grid.component/pi
 import {LibGridCellAnchorDirective} from 'app/library/components/lib-grid.component/directives/lib-grid-cell-anchor.directive';
 import {LibGridCellValueViewPipe} from 'app/library/components/lib-grid.component/pipes/lib-grid-cell-value-view.pipe';
 import {LibGridCellClassPipe} from 'app/library/components/lib-grid.component/pipes/lib-grid-cell-class.pipe';
+import {HeaderBarComponent} from 'app/library/components/header-bar/header-bar.component';
+import {PageAction} from 'app/library/components/header-bar/page-action';
 
 @NgModule({
     declarations: [
@@ -33,6 +35,8 @@ import {LibGridCellClassPipe} from 'app/library/components/lib-grid.component/pi
         LibGridCellAnchorDirective,
         LibGridCellValueViewPipe,
         LibGridCellClassPipe,
+        HeaderBarComponent,
+        PageAction,
     ],
     imports: [
         BrowserModule,
@@ -42,8 +46,13 @@ import {LibGridCellClassPipe} from 'app/library/components/lib-grid.component/pi
     exports: [
         AdminMenuComponent,
         AdminPageContainerComponent,
-        FieldComponent,
-        LibGridComponent
+        LibAutocompleteFieldComponent,
+        LibDropdownFieldComponent,
+        LibFieldComponent,
+        LibGridComponent,
+        HeaderBarComponent,
+        LibPopupComponent,
+        PageAction,
     ]
 })
 export class LibraryModule {
