@@ -2,6 +2,7 @@ package com.example.techmadness.presentation.login
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.techmadness.R
@@ -36,9 +37,11 @@ class LoginFragment : BaseDIMoxyFragment<LoginGraph>(), LoginView {
 
     private fun initViews(){
         btnLogin.setOnClickListener {
-            presenter.onLoginBtnClicked()
+            presenter.onLoginBtnClicked(etLogin.text.toString(), etPassword.text.toString())
         }
     }
 
-
+    override fun showToast(error: String?) {
+        Toast.makeText(context,error,Toast.LENGTH_LONG).show()
+    }
 }
