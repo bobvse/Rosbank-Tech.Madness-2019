@@ -6,7 +6,9 @@ import com.example.techmadness.di.core.navigation.MainRouter
 import javax.inject.Inject
 
 @InjectViewState
-class LoginPresenter @Inject constructor(private val mainRouter: MainRouter) : BasePresenter<LoginView>(){
+class LoginPresenter @Inject constructor(private val mainRouter: MainRouter
+
+) : BasePresenter<LoginView>(){
 
     fun onLoginBtnClicked(){
         mainRouter.openDocumentsScreen()

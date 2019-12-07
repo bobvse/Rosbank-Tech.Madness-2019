@@ -11,12 +11,11 @@ import javax.inject.Inject
 @InjectViewState
 class DocumentsPresenter @Inject constructor(
     val mainRouter: MainRouter,
-    val documentsUseCase: GetDocumentsUseCase
+    private val documentsUseCase: GetDocumentsUseCase
 ) : BasePresenter<DocumentsView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-
-        unsubscribeOnDestroy(documentsUseCase.testResponse().async().subscribe({},{}))
+        // unsubscribeOnDestroy(documentsUseCase.testResponse().async().subscribe({},{}))
     }
 }

@@ -10,5 +10,5 @@ import dagger.Module
 interface DocumentsDataModule {
     @Binds
     @PerPresentationScope
-    fun provideAviaFiltersRepository(docmentsRepositoryImpl: DocumentsRepositoryImpl): DocumentsRepository
+    fun provideDocumentsRepository(docmentsRepositoryImpl: DocumentsRepositoryImpl): DocumentsRepository
 }

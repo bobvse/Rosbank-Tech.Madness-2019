@@ -1,6 +1,7 @@
 package com.example.techmadness.presentation.login.di
 
 import com.example.techmadness.di.core.ComponentCompanion
+import com.example.techmadness.di.deps.login.LoginDependencies
 import com.example.techmadness.di.deps.navigation.RouterDependencies
 import com.example.techmadness.di.scope.PerPresentationScope
 import dagger.Component
@@ -8,7 +9,8 @@ import dagger.Component
 @PerPresentationScope
 @Component(
     dependencies = [
-        RouterDependencies::class
+        RouterDependencies::class,
+        LoginDependencies::class
     ]
 )
 interface LoginComponent {
