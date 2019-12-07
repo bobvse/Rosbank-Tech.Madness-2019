@@ -5,4 +5,34 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorHeader">#2D323E</color>
     <color name="black">#000000</color>
+
+    <color name="actionbar">#262b36</color>
+    <color name="white">#ffffff</color>
+    <color name="dark_grey">#485261</color>
+    <color name="red">#ec4f53</color>
+    <color name="blue">#48adea</color>
+    <color name="light_grey">#ced5dd</color>
+    <color name="disable_btn_text_grey">#5d63 </color>
+    <color name="disable_btn_grey">#393d47</color>
+    <color name="green">#56b152</color>
+    <color name="light_green">#79c64a</color>
+    <color name="cardtext_grey">#a6b2c0</color>
+    <color name="card_bg">#f5f7fa</color>
+    <color name="orange">#f6a41d</color>
+    <color name="disabled_orange">#80F6A41D</color>
+    <color name="light_bg">#e9ecf1</color>
+    <color name="dotted_separator">#4d617086</color>
+    <color name="btn_grey">#313642</color>
+    <color name="solid_separator">#4d616f86</color>
+    <color name="statusbar">#33000000</color>
+    <color name="light_orange">#ffc3 </color>
+    <color name="dark_blue">#328f </color>
+    <color name="noactive_calendar">#33ffff </color>
+    <color name="pink">#e94a76</color>
+    <color name="pink_light">#f54a7a</color>
+    <color name="disabled_pink">#77324b</color>
+    <color name="grey">#818a97</color>
+    <color name="dark">#1f242e</color>
+    <color name="placeholder">#cdd5df</color>
+    <color name="devider">#40818998</color>
 </resources>

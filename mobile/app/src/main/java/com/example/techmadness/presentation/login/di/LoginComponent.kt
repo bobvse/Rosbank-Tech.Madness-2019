@@ -21,6 +21,7 @@ interface LoginComponent {
         override fun createComponent(): LoginComponent {
             return DaggerLoginComponent.builder()
                 .routerDependencies(RouterDependencies.get())
+                .loginDependencies(LoginDependencies.get())
                 .build()
         }
     }
