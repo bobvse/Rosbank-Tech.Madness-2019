@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SigningServer.Api", "SigningServer\SigningServer.Api.csproj", "{FFF6623B-B27B-468A-9097-12FBB380F90B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SigningServer.Core", "SigningServer.Core\SigningServer.Core.csproj", "{DBB83AF1-AE15-4D8B-979F-6E35C26251C9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SigningServer.Domain", "SigningServer.Domain\SigningServer.Domain.csproj", "{C6C5C760-BB98-4BFF-8D21-6A5040730833}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SigningServer.Shared", "SigningServer.Shared\SigningServer.Shared.csproj", "{63490A8E-D458-40AD-B733-7009BB836EFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigningServer.Tests", "SigningServer.Tests\SigningServer.Tests.csproj", "{2C062BF8-53D5-4BFD-82D2-7057CE5550CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFF6623B-B27B-468A-9097-12FBB380F90B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFF6623B-B27B-468A-9097-12FBB380F90B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFF6623B-B27B-468A-9097-12FBB380F90B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFF6623B-B27B-468A-9097-12FBB380F90B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBB83AF1-AE15-4D8B-979F-6E35C26251C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBB83AF1-AE15-4D8B-979F-6E35C26251C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBB83AF1-AE15-4D8B-979F-6E35C26251C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBB83AF1-AE15-4D8B-979F-6E35C26251C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6C5C760-BB98-4BFF-8D21-6A5040730833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6C5C760-BB98-4BFF-8D21-6A5040730833}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6C5C760-BB98-4BFF-8D21-6A5040730833}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6C5C760-BB98-4BFF-8D21-6A5040730833}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63490A8E-D458-40AD-B733-7009BB836EFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63490A8E-D458-40AD-B733-7009BB836EFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63490A8E-D458-40AD-B733-7009BB836EFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63490A8E-D458-40AD-B733-7009BB836EFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C062BF8-53D5-4BFD-82D2-7057CE5550CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C062BF8-53D5-4BFD-82D2-7057CE5550CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C062BF8-53D5-4BFD-82D2-7057CE5550CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C062BF8-53D5-4BFD-82D2-7057CE5550CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6D6C3950-4FA1-4E72-822E-B64820B30259}
+	EndGlobalSection
+EndGlobal
