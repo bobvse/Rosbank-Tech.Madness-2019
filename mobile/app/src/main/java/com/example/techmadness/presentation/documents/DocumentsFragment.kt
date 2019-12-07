@@ -47,7 +47,7 @@ class DocumentsFragment : BaseDIMoxyFragment<DocumentsGraph>(), DocumentsView {
     }
 
     private fun initRecyclerView() {
-        rvDocuments.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        rvDocuments.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rvDocuments.addItemDecoration(DividerItemDecoration(activity, ClipDrawable.HORIZONTAL))
         rvDocuments.adapter = adapter
     }

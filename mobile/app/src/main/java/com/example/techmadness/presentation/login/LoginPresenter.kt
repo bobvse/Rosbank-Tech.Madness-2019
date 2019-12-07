@@ -18,6 +18,15 @@ class LoginPresenter @Inject constructor(
         unsubscribeOnDestroy(loginUseCase.login(login, pw).async().subscribe({
             if (it.role == "Director") {
                 mainRouter.openDocumentsScreen()
+                //в базу сложить и на другом потоке, но потом
+                loginUseCase.setUser(
+                    it.login,
+                    it.name,
+                    it.surname,
+                    it.patronymic,
+                    it.role,
+                    it.companyId
+                )
             } else {
                 viewState.showToast(error)
             }

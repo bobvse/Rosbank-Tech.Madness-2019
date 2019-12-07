@@ -1,6 +1,7 @@
 package com.example.techmadness.core.networking
 
 import com.example.techmadness.core.networking.Annotations.Json
+import com.example.techmadness.model.CompanyResponse
 import com.example.techmadness.model.Testresponse
 import com.example.techmadness.model.UserResponse
 import io.reactivex.Single
@@ -17,4 +18,8 @@ interface TechMadnessApiService {
     @GET("User/{id}")
     @Json
     fun login(@Path("id") id: String): Single<UserResponse>
+
+    @GET("Company/{id}")
+    @Json
+    fun getCompany(@Path("id") id: String): Single<CompanyResponse>
 }
