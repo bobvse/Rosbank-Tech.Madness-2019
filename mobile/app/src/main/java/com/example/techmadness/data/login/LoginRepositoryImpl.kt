@@ -33,7 +33,7 @@ class LoginRepositoryImpl @Inject constructor(private val techMadnessApiService:
         user.companyId = companyId
     }
 
-    fun getMainUser(): User {
+    override fun getMainUser(): User {
         return user
     }
 

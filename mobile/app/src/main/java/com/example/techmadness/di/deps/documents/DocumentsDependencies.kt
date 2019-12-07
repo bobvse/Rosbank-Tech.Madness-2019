@@ -6,6 +6,7 @@ import com.example.techmadness.domain.documents.GetDocumentsUseCase
 
 interface DocumentsDependencies {
     fun provideDocumentsUseCase(): GetDocumentsUseCase
+    fun provideDocumentsInteractor():DocumentsInteractor
 
     companion object : SingletonWithProvider<DocumentsDependencies>()
 }

@@ -7,10 +7,10 @@ class CompanyResponse {
     var id: String = ""
     @SerializedName("name")
     var name: String = ""
-    @SerializedName("")
-    var balance: String = "balance"
-    @SerializedName("")
-    var success: String = "success"
+    @SerializedName("balance")
+    var balance: String = ""
+    @SerializedName("success")
+    var success: String = ""
     @SerializedName("error")
     var error: String = ""
 }

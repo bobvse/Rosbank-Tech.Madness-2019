@@ -8,15 +8,15 @@ class UserResponse {
     @SerializedName("name")
     var name: String = ""
     @SerializedName("surname")
-    var surname : String = ""
-   @SerializedName("patronymic")
+    var surname: String = ""
+    @SerializedName("patronymic")
     var patronymic: String = ""
     @SerializedName("role")
-    var role :String = ""
-   @SerializedName("companyId")
-    var companyId :String = ""
-   @SerializedName("success")
-    var success :String = ""
+    var role: String = ""
+    @SerializedName("companyId")
+    var companyId: String = ""
+    @SerializedName("success")
+    var success: String = ""
     @SerializedName("error")
-    var error :String = ""
+    var error: String = ""
 }
