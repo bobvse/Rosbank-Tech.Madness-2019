@@ -1,21 +1,30 @@
-<app-header-bar title="My impossible app" status="Баланс: 1.2млн">
+<app-header-bar
+    title="My impossible app"
+    [statusSubscribe]="'Баланс: ' + company.balance"
+    [status]="company.name"
+>
     <app-action
         faIcon="fa-upload"
         title="Загрузить"
         (execute)="uploadPopup.show()"
+        *ngIf="user.role === 'Operator'"
     ></app-action>
     <app-action
         faIcon="fa-sort"
         title="Приоритет"
         (execute)="priorityPopup.show()"
+        *ngIf="user.role === 'Accountant'"
     ></app-action>
     <app-action
         faIcon="fa-edit"
         title="Подписать"
+        *ngIf="user.role === 'Director'"
+        (execute)="signDocuments()"
     ></app-action>
     <app-action
         faIcon="fa-filter"
         title="Фильтр"
+        (execute)="filterPopup.show()"
     ></app-action>
 </app-header-bar>
 
@@ -24,7 +33,7 @@
 <app-admin-page-container>
   <lib-grid
       [definitions]="gridDefinition"
-      [list]="documents"
+      [list]="filteredDocuments"
       [pageSize]="30"
   ></lib-grid>
 </app-admin-page-container>
@@ -67,4 +76,54 @@
         size="100"
         (exec)="setPriority(priorityField.value)"
     ></lib-field>
+</lib-popup>
+
+<lib-popup
+    size="400px"
+    header="Фильтр"
+    overflow="visible"
+    #filterPopup
+>
+    <div class="after-clear">
+        <lib-field
+            type="dropdown"
+            label="Приоритет"
+            size="50"
+            [stack]="priorityVariantsStack"
+            [(value)]="filterDefinitions.priority"
+        ></lib-field>
+        <lib-field
+            type="text"
+            label="Название"
+            size="50"
+            [stack]="priorityVariantsStack"
+            [(value)]="filterDefinitions.name"
+        ></lib-field>
+        <lib-field
+            type="number"
+            label="Минимальная сумма"
+            size="50"
+            [(value)]="filterDefinitions.minAmount"
+        ></lib-field>
+        <lib-field
+            type="number"
+            label="Максимальная сумма"
+            size="50"
+            [(value)]="filterDefinitions.maxAmount"
+        ></lib-field>
+    </div>
+    <div class="after-clear">
+        <lib-field
+            type="button"
+            label="Отчистить"
+            size="50"
+            (exec)="clearFilter()"
+        ></lib-field>
+        <lib-field
+            type="button"
+            label="Подтвердить"
+            size="50"
+            (exec)="filterDocuments()"
+        ></lib-field>
+    </div>
 </lib-popup>

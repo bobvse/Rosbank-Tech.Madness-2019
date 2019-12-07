@@ -1,0 +1,28 @@
+:host {
+  position: fixed;
+  z-index: 6;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  opacity: 0;
+  padding: 8px 17px;
+  font-size: 14px;
+  color: #ffffff;
+  background: #2d323e;
+  text-align: center;
+  min-width: 150px;
+  letter-spacing: 0.5px;
+  transition: all 0.2s linear;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  &.shown {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+  &.error {
+    background: #d23e3e;
+  }
+  &.warning {
+    background: #de6900;
+  }
+}

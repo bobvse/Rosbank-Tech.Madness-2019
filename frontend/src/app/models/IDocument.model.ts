@@ -11,7 +11,14 @@ export const DocumentPriorityDesc: {[key: string]: string} = {
 };
 
 export interface IDocumentModel {
+    id: string;
     name: string;
     price: number;
     priority?: DocumentPriorityEnum;
+}
+
+export interface IDocumentsResponse {
+    documents: IDocumentModel[];
+    success: boolean;
+    error: boolean;
 }

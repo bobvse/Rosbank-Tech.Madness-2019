@@ -1,94 +1,101 @@
 :host {
-  z-index: 4;
-  box-shadow: 0 0 3px rgba(#000,0.4);
-  height: 40px;
-  position: relative;
-  width: 100%;
-  background: #2D323E;
-  float: left;
-  /deep/ action {
-    height: 100%;
+    z-index: 4;
+    box-shadow: 0 0 3px rgba(#000, 0.4);
+    height: 40px;
+    position: relative;
+    width: 100%;
+    background: #2D323E;
     float: left;
-    margin-right: 5px;
-    &:last-child {
-      margin-right: 0;
-    }
-    .button, label {
-      height: 100%;
-      padding: 9px 12px;
-    }
-    &.goBack {
-      .button, label {
+
+    /deep/ action {
         height: 100%;
-        padding: 6px 12px;
-      }
-      i {
-        font-size: 25px;
-        margin-top: 0;
-        margin-right: 4px;
-      }
+        float: left;
+        margin-right: 5px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        .button, label {
+            height: 100%;
+            padding: 9px 12px;
+        }
+
+        &.goBack {
+            .button, label {
+                height: 100%;
+                padding: 6px 12px;
+            }
+
+            i {
+                font-size: 25px;
+                margin-top: 0;
+                margin-right: 4px;
+            }
+        }
     }
-  }
 }
 
 .title {
-  font-family: Arial, serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding-left: 0;
-  padding-top: 11px;
-  margin-right: 23px;
-  height: 100%;
-  display: block;
-  float: left;
-  &.goBackIsHide {
-    padding-left: 24px;
-  }
+    font-family: Arial, serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-left: 0;
+    padding-top: 11px;
+    margin-right: 23px;
+    height: 100%;
+    display: block;
+    float: left;
+
+    &.goBackIsHide {
+        padding-left: 24px;
+    }
 }
 
 lib-search-box {
-  width: 300px;
-  display: block;
-  float: right;
+    width: 300px;
+    display: block;
+    float: right;
 }
 
 fuse-navigation {
-  display: block;
-  float: left;
-  width: 90px;
-  height: 100%;
+    display: block;
+    float: left;
+    width: 90px;
+    height: 100%;
 }
 
 .menu {
-  float: left;
-  height: 100%;
+    float: left;
+    height: 100%;
 }
 
 .badge {
-  font-family: Arial, serif;
-  font-size: 14px;
-  font-weight: bold;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  padding-left: 15px;
-  padding-top: 12px;
-  margin-right: 23px;
-  height: 100%;
-  display: block;
-  float: right;
-  background: transparent !important;
+    font-family: Arial, serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding-left: 15px;
+    padding-top: 12px;
+    margin-right: 23px;
+    height: 100%;
+    display: block;
+    float: right;
+    background: transparent !important;
 
-  &.has-extra {
-    padding-top: 6px;
+    &.has-extra {
+        padding-top: 6px;
 
-    span {
-      display: block;
-      padding-top: 2px;
-      text-align: right;
+        span {
+            display: block;
+            padding-top: 2px;
+            text-align: right;
+            font-size: 10px;
+        }
     }
-  }
 }

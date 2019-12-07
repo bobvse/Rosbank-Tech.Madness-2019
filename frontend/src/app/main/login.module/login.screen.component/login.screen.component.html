@@ -1,0 +1,18 @@
+<lib-field
+    type="text"
+    [(value)]="login"
+    label="Логин"
+    size="100"
+></lib-field>
+<lib-field
+    type="password"
+    [(value)]="password"
+    label="Пароль"
+    size="100"
+></lib-field>
+<lib-field
+    type="button"
+    (exec)="auth()"
+    label="Войти"
+    size="100"
+></lib-field>

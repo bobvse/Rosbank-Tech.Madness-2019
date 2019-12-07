@@ -1,19 +1,19 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {IndexScreenComponent} from './index.screen.component/index.screen.component';
-import {IndexRoutingModule} from './index-routing.module';
 import {LibraryModule} from 'app/library/library.module';
 import {HttpClientModule} from '@angular/common/http';
-import {GridCheckboxComponent} from 'app/main/index.module/grid-checkbox.component/grid-checkbox.component';
+import {DocumentsScreenComponent} from 'app/main/documents.module/documents.screen.component/documents.screen.component';
+import {DocumentsRoutingModule} from 'app/main/documents.module/documents-routing.module';
+import {GridCheckboxComponent} from 'app/main/documents.module/grid-checkbox.component/grid-checkbox.component';
 
 @NgModule({
     declarations: [
-        IndexScreenComponent,
+        DocumentsScreenComponent,
         GridCheckboxComponent,
     ],
     imports: [
         BrowserModule,
-        IndexRoutingModule,
+        DocumentsRoutingModule,
         LibraryModule,
         HttpClientModule,
     ],
@@ -22,5 +22,5 @@ import {GridCheckboxComponent} from 'app/main/index.module/grid-checkbox.compone
         GridCheckboxComponent,
     ]
 })
-export class IndexModule {
+export class DocumentsModule {
 }

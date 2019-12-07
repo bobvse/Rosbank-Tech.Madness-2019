@@ -19,6 +19,7 @@ import {LibGridCellValueViewPipe} from 'app/library/components/lib-grid.componen
 import {LibGridCellClassPipe} from 'app/library/components/lib-grid.component/pipes/lib-grid-cell-class.pipe';
 import {HeaderBarComponent} from 'app/library/components/header-bar/header-bar.component';
 import {PageAction} from 'app/library/components/header-bar/page-action';
+import {LibNotifyComponent} from 'app/library/components/lib-notify.component/lib-notify.component';
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import {PageAction} from 'app/library/components/header-bar/page-action';
         LibGridCellClassPipe,
         HeaderBarComponent,
         PageAction,
+        LibNotifyComponent,
     ],
     imports: [
         BrowserModule,
@@ -53,6 +55,7 @@ import {PageAction} from 'app/library/components/header-bar/page-action';
         HeaderBarComponent,
         LibPopupComponent,
         PageAction,
+        LibNotifyComponent,
     ]
 })
 export class LibraryModule {

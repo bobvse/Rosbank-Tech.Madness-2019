@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {IndexScreenComponent} from './index.screen.component/index.screen.component';
+import {LoginScreenComponent} from 'app/main/login.module/login.screen.component/login.screen.component';
 
 const routes: Routes = [
   {
-    path: 'index',
-    component: IndexScreenComponent,
+    path: 'login',
+    component: LoginScreenComponent,
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class IndexRoutingModule { }
+export class LoginRoutingModule { }
